@@ -9,9 +9,11 @@ import org.junit.Assert;
 import techproed.pages.MedunnaPage;
 import techproed.utilities.*;
 
-public class MedunnaStepdefinition {
+public class UIMedunnaStepdefs {
 
     public static Integer roomNumber;
+    public static String expectedDescription;
+    public static String expectedPrice;
     MedunnaPage medunnaPage = new MedunnaPage();
 
     @Given("the user navigates to the {string} website")
@@ -79,11 +81,14 @@ public class MedunnaStepdefinition {
     @And("enters {string} in the Price field")
     public void entersInThePriceField(String price) {
         medunnaPage.priceInput.sendKeys(price);
+        expectedPrice =price;
+
     }
 
     @And("enters a {string} in the Description field")
     public void entersAInTheDescriptionField(String description) {
         medunnaPage.descriptionInput.sendKeys(description);
+        expectedDescription=description;
     }
 
     @And("clicks on the save button")

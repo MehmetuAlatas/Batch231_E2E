@@ -21,8 +21,8 @@ Feature: TC01 UI Creating a room on medunna
     Then verify A new Room is created succesfully
     And closes the application
     Examples:
-      | price   | description                          |
-      | 123.0   | End To End Test icin olusturulmustur |
+      | price    | description                          |
+      | 123.00   | End To End Test icin olusturulmustur |
 
 
 
