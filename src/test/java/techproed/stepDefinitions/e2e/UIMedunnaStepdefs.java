@@ -11,7 +11,7 @@ import techproed.utilities.*;
 
 public class UIMedunnaStepdefs {
 
-    public static Integer roomNumber;
+    public static int roomNumber;
     public static String expectedDescription;
     public static String expectedPrice;
     MedunnaPage medunnaPage = new MedunnaPage();

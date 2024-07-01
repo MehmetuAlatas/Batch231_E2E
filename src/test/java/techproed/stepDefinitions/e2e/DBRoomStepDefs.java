@@ -6,24 +6,35 @@ import io.cucumber.java.en.When;
 
 import java.sql.*;
 
+import static org.junit.Assert.assertEquals;
+
 public class DBRoomStepDefs {
     Connection connection;
+    Statement statement;
+    ResultSet resultSet;
 
-    @Given("Admin Connect to the Database")
-    public void adminConnectToTheDatabase() throws SQLException {
+    @Given("Admin connect to the DataBase")
+    public void adminConnectToTheDataBase() throws SQLException {
       connection = DriverManager.getConnection("jdbc:postgresql://medunna.com:5432/medunna_db_v2","select_user","Medunna_pass_@6");
     }
 
     @When("send query for created room")
     public void sendQueryForCreatedRoom() throws SQLException {
-
-      Statement statement = connection.createStatement();
-      ResultSet resultSet = statement.executeQuery("select * from room where room_number = 111115114");
-        resultSet.next();
+        statement = connection.createStatement();
+        resultSet = statement.executeQuery("select * from room where room_number ="+UIMedunnaStepdefs.roomNumber);
     }
+
 
     @Then("validates created room from resultset")
-    public void validatesCreatedRoomFromResultset() {
+    public void validatesCreatedRoomFromResultset() throws SQLException {
+        resultSet.next();
+
+        assertEquals(UIMedunnaStepdefs.roomNumber,resultSet.getInt("room_number"));
+        assertEquals("SUITE" ,resultSet.getString("room_type"));
+        assertEquals( UIMedunnaStepdefs.expectedDescription ,resultSet.getString("description"));
+
 
     }
+
+
 }
