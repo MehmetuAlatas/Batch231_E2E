@@ -13,6 +13,8 @@ public class DBRoomStepDefs {
     Statement statement;
     ResultSet resultSet;
 
+    public static int roomId;
+
     @Given("Admin connect to the DataBase")
     public void adminConnectToTheDataBase() throws SQLException {
       connection = DriverManager.getConnection("jdbc:postgresql://medunna.com:5432/medunna_db_v2","select_user","Medunna_pass_@6");
@@ -28,10 +30,11 @@ public class DBRoomStepDefs {
     @Then("validates created room from resultset")
     public void validatesCreatedRoomFromResultset() throws SQLException {
         resultSet.next();
-
         assertEquals(UIMedunnaStepdefs.roomNumber,resultSet.getInt("room_number"));
         assertEquals("SUITE" ,resultSet.getString("room_type"));
         assertEquals( UIMedunnaStepdefs.expectedDescription ,resultSet.getString("description"));
+
+        roomId = resultSet.getInt("id");
 
 
     }
