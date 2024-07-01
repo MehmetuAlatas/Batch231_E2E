@@ -1,4 +1,3 @@
-
   @e2e
 Feature: TC01 UI Creating a room on medunna
 
